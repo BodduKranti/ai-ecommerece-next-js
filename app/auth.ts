@@ -15,7 +15,8 @@ const authOptions: NextAuthConfig = {
             async authorize(credentials) {
                 console.log('crendetial', credentials)
 
-                const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
+                // const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
+                const CREDENTIAL_LOGIN_URL = process.env.NEXTAUTH_URL + "/api/login";
                 console.log('LOGIN_URL: ', CREDENTIAL_LOGIN_URL)
 
                 try {
@@ -29,14 +30,15 @@ const authOptions: NextAuthConfig = {
                         headers: { 'Content-Type': 'application/json' },
                     })
 
-                    responseData = { ...response?.data };
-
-                    console.log('responseData', responseData)
-                    console.log('response', response)
-                    return { ...responseData };
+                    const user = response.data;
+                    console.log('user', user)
+                    if (!user) return null;
+                    return user;
                 } catch (error: any) {
                     console.error('Error during authorization', error?.message);
-                    throw new Error(error?.message ?? 'Something went wrong!!!');
+                    // throw new Error(error?.message ?? 'Something went wrong!!!');
+                    return null;
+
                 }
 
             },

@@ -4,7 +4,7 @@ const page = () => {
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className='text-center w-full mb-4'>
-                <h2 className='login-card__title my-1' data-testid='login-title'>Login</h2>
+                <h2 className='login-card__title my-1' data-testid='login-title'>Login Home</h2>
                 <p className="login-card__subtitle text-muted mb-0">Sign in to manage your ballots</p>
             </div>
 
