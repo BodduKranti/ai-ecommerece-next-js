@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { removeFromCart } from '../../store/slices/cartSlice'
+import { useAppDispatch } from '../../store/hook'
 
 const CartItems = ({ product }: { product: any }) => {
+    const dispatch = useAppDispatch()
     return (
         <li key={product.id} className="flex py-6">
             <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -24,14 +27,23 @@ const CartItems = ({ product }: { product: any }) => {
                                 {product?.title}
                             </Link>
                         </h3>
-                        <p className="ml-4">{product.price}</p>
+                        <p className="ml-4">${product.price}</p>
                     </div>
                 </div>
                 <div className="flex flex-1 items-end justify-between text-sm">
                     <p className="text-gray-500">Qty {product.quantity}</p>
 
                     <div className="flex">
-                        <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                dispatch(
+                                    removeFromCart(product?.id)
+                                )
+
+                            }}
+
+                            className="font-medium cursor-pointer text-indigo-600 hover:text-indigo-500">
                             Remove
                         </button>
                     </div>

@@ -10,7 +10,7 @@ const CartPage = () => {
         <MainLayout>
             <PageTitle pageTitle='Cart' />
 
-            <div className='w-full md:flex grid grid-cols-1 gap-4'>
+            <div className='w-full md:flex grid grid-cols-1 gap-4 mt-4'>
                 <div className='md:w-2/3 w-full'>
                     <Cartpagesection />
                 </div>
