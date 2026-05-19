@@ -15,8 +15,8 @@ const authOptions: NextAuthConfig = {
             async authorize(credentials) {
                 console.log('crendetial', credentials)
 
-                // const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
-                const CREDENTIAL_LOGIN_URL = process.env.NEXTAUTH_URL + "/api/login";
+                const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
+                // const CREDENTIAL_LOGIN_URL = process.env.NEXTAUTH_URL + "/api/login";
                 console.log('LOGIN_URL: ', CREDENTIAL_LOGIN_URL)
 
                 try {
