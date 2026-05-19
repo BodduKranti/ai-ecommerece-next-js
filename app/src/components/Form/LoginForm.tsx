@@ -36,12 +36,6 @@ const LoginForm = () => {
             // loginURL: buildURL('/admin/api'),
         })
 
-        // {
-        //     "error": null,
-        //         "status": 200,
-        //             "ok": true,
-        //                 "url": "http://localhost:3000"
-        // }
         console.log('result', result)
         if (!result?.error) {
             return setTimeout(() => {
