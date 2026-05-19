@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
+export const runtime = 'nodejs'
 
 // GET request handler
 export async function GET(request: Request) {
