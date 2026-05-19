@@ -23,7 +23,7 @@ const authOptions: NextAuthConfig = {
                     let responseData: any = null;
                     const { username, password } = credentials || {}
 
-                    const response = await axios.post(CREDENTIAL_LOGIN_URL, {
+                    const response = await axios.post(`https://dummyjson.com/auth/login`, {
                         username,
                         password
                     }, {
