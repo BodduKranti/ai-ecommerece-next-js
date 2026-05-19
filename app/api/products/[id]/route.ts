@@ -1,10 +1,11 @@
 import { auth } from "@/app/auth";
 import axios from "axios";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+export const runtime = 'nodejs'
 
 // GET request handler for fetching a specific election by election_code
 export async function GET(
-    request: NextRequest,
+    request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
 
