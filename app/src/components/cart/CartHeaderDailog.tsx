@@ -6,6 +6,8 @@ import ImageItem from '../Fields/ImageItem';
 import CommonBtns from '../Buttons/CommonBtns';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAppDispatch } from '../../store/hook';
+import { removeFromCart } from '../../store/slices/cartSlice';
 
 interface CartHeaderDailogProps {
     open: boolean;
@@ -19,6 +21,7 @@ const CartHeaderDailog: FC<CartHeaderDailogProps> = ({
     products
 }) => {
     const router = useRouter()
+    const dispatch = useAppDispatch()
     return (
         <Dialog open={open} onClose={setOpen} className="relative z-10">
             <DialogBackdrop
@@ -85,7 +88,13 @@ const CartHeaderDailog: FC<CartHeaderDailogProps> = ({
                                                                 <p className="text-gray-500">Qty {product.quantity}</p>
 
                                                                 <div className="flex">
-                                                                    <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            dispatch(
+                                                                                removeFromCart(product?.id)
+                                                                            )
+                                                                        }}
+                                                                        type="button" className="font-medium cursor-pointer text-indigo-600 hover:text-indigo-500">
                                                                         Remove
                                                                     </button>
                                                                 </div>

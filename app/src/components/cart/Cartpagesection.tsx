@@ -2,12 +2,17 @@
 import { CartItem } from '../../types';
 import { useAppSelector } from '../../store/hook';
 import CartList from './CartList';
+import NoRecords from '../common/NoRecords';
 
 const Cartpagesection = () => {
     const cartList: CartItem[] = useAppSelector((state) => state.cart.items);
     console.log('cartList', cartList)
     return (
-        <CartList cartList={cartList} />
+        cartList?.length > 0 ?
+            <CartList cartList={cartList} /> :
+            <NoRecords
+                Message={'Empty Cart'}
+            />
     )
 }
 
