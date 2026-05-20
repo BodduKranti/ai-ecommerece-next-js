@@ -71,3 +71,6 @@ npm install langchain
 pnpm add @langchain/ollama recomneed this without api key
 
 irm https://ollama.com/install.ps1 | iex
+
+// Secret key
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
