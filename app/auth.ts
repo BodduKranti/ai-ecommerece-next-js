@@ -2,6 +2,7 @@ import NextAuth, { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { INTERNAL_HOST_URL } from "./src/utils/constants";
 import axios from "axios";
+
 const authOptions: NextAuthConfig = {
     trustHost: true,
     providers: [
@@ -15,30 +16,28 @@ const authOptions: NextAuthConfig = {
             async authorize(credentials) {
                 console.log('crendetial', credentials)
 
-                // const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
-                const CREDENTIAL_LOGIN_URL = process.env.INTERNAL_HOST_URL + "/api/login";
+                const CREDENTIAL_LOGIN_URL = `${INTERNAL_HOST_URL}/api/login`;
                 console.log('LOGIN_URL: ', CREDENTIAL_LOGIN_URL)
 
                 try {
                     let responseData: any = null;
                     const { username, password } = credentials || {}
 
-                    const response = await axios.post(`https://dummyjson.com/auth/login`, {
+                    const response = await axios.post(CREDENTIAL_LOGIN_URL, {
                         username,
                         password
                     }, {
                         headers: { 'Content-Type': 'application/json' },
                     })
 
-                    const user = response.data;
-                    console.log('user', user)
-                    if (!user) return null;
-                    return user;
+                    responseData = { ...response?.data };
+
+                    console.log('responseData', responseData)
+                    console.log('response', response)
+                    return { ...responseData };
                 } catch (error: any) {
                     console.error('Error during authorization', error?.message);
-                    // throw new Error(error?.message ?? 'Something went wrong!!!');
-                    return null;
-
+                    throw new Error(error?.message ?? 'Something went wrong!!!');
                 }
 
             },
